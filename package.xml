@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="com.leon.wcf.cheatdatabase.core" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/package.xsd">
+	<packageinformation>
+		<packagename><![CDATA[Pokémon Cheat Database Core]]></packagename>
+		<version>1.0.0 dev</version>
+		<date>2012-04-21</date>
+		<isunique>1</isunique>
+		<standalone>0</standalone>
+	</packageinformation>
+	<authorinformation>
+		<author><![CDATA[Stefan Hahn]]></author>
+		<authorurl><![CDATA[https://github.com/Leon-]]></authorurl>
+	</authorinformation>
+	<requiredpackages>
+		<requiredpackage minversion="1.1.*">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.data.page</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.form.message</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.form.message.wysiwyg</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.data.message.bbcode</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.data.message.search</requiredpackage>
+	</requiredpackages>
+	<excludedpackages>
+		<excludedpackage version="1.2.*">com.woltlab.wcf</excludedpackage>
+		<excludedpackage version="2.*.*">com.woltlab.wcf</excludedpackage>
+	</excludedpackages>
+	<instructions type="install">
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<sql>install.sql</sql>
+		<pagelocation>pagelocation.xml</pagelocation>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<searchablemessagetypes>searchablemessagetypes.xml</searchablemessagetypes>
+		<languages languagecode="de-informal">de-informal.xml</languages>
+		<languages languagecode="de">de.xml</languages>
+	</instructions>
+</package>
