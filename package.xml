@@ -27,9 +27,9 @@
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
 		<sql>install.sql</sql>
-		<pagelocation>pagelocation.xml</pagelocation>
-		<eventlistener>eventlistener.xml</eventlistener>
+		<options>options.xml</options>
 		<groupoptions>groupoptions.xml</groupoptions>
+		<pagelocation>pagelocation.xml</pagelocation>
 		<searchablemessagetypes>searchablemessagetypes.xml</searchablemessagetypes>
 		<languages languagecode="de-informal">de-informal.xml</languages>
 		<languages languagecode="de">de.xml</languages>
