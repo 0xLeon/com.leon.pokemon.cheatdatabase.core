@@ -104,7 +104,7 @@ class CheatDatabaseEntryListPage extends SortablePage {
 		
 		PageMenu::setActiveMenuItem('wcf.header.menu.cheatDatabase');
 		
-		WCF::getUser()->checkPermission(array());
+		WCF::getUser()->checkPermission('user.cheatDatabase.canUseCheatDatabase');
 		
 		parent::show();
 	}
