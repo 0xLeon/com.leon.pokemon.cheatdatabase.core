@@ -1,11 +1,10 @@
 DROP TABLE IF EXISTS wcf1_cheat_database_entry;
 CREATE TABLE wcf1_cheat_database_entry (
 	entryID		INT(10)			NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	userID		INT(10)			NOT NULL DEFAULT 0,
-	username	VARCHAR(255)		NOT NULL,
+	messageID	INT(10)  		NOT NULL DEFAULT 0,
 	pokedexNumber	INT(5)			NOT NULL,
 	nickname	VARCHAR(255)		NOT NULL DEFAULT '',
-	gender		TINYINT(1) USIGNED	NOT NULL DEFAULT 0,
+	gender		TINYINT(1) UNSIGNED	NOT NULL DEFAULT 0,
 	trainerName	VARCHAR(255)		NOT NULL,
 	trainerID	INT(5) UNSIGNED		NOT NULL DEFAULT 0,
 	level		TINYINT(3) UNSIGNED	NOT NULL DEFAULT 0,
@@ -17,6 +16,21 @@ CREATE TABLE wcf1_cheat_database_entry (
 	isShiny		TINYINT(1)		NOT NULL DEFAULT 0,
 	ball		TINYINT(3) UNSIGNED	NOT NULL,
 	ribbons		VARCHAR(255)		NOT NULL DEFAULT '',
-	message		MEDIUMTEXT,
-	FULLTEXT KEY (nickname, trainerName, message)
+	FULLTEXT KEY (nickname, trainerName)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS wcf1_cheat_database_entry_message;
+CREATE TABLE wcf1_cheat_database_entry_message (
+	messageID 	INT(10)  	NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	entryID		INT(10)  	NOT NULL DEFAULT 0,
+	userID 		INT(10)  	NOT NULL DEFAULT 0,
+	username 	VARCHAR(255) 	NOT NULL DEFAULT '',
+	subject 	VARCHAR(255) 	NOT NULL DEFAULT '',
+	message 	MEDIUMTEXT,
+	time 		INT(10)  	NOT NULL DEFAULT 0,
+	ipAddress 	VARCHAR(15) 	NOT NULL DEFAULT '',
+	enableSmilies	TINYINT(1)  	NOT NULL DEFAULT 1,
+	enableHtml 	TINYINT(1)  	NOT NULL DEFAULT 0,
+	enableBBCodes	TINYINT(1)  	NOT NULL DEFAULT 1,
+	FULLTEXT KEY (subject, message)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
