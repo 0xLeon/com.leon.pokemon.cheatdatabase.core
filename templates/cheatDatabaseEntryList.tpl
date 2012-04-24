@@ -1,6 +1,6 @@
 {include file='documentHeader'}
 <head>
-	<title>{lang}wcf.cheatDatabase.title{/lang} - {PAGE_TITLE}
+	<title>{lang}wcf.cheatDatabase.title{/lang} - {PAGE_TITLE}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/MultiPagesLinks.class.js"></script>
 </head>
@@ -128,7 +128,7 @@
 	{/if}
 	
 	<div class="contentFooter">
-		{pages print=true link="index.php?page=CheatDatabaseEntryList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder|concat:SID_ARG_2ND_NOT_ENCODED}
+		{pages print=true link="index.php?page=CheatDatabaseEntryList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
 		
 		<div class="largeButtons">
 			<ul>
