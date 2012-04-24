@@ -38,51 +38,58 @@
 		</div>
 	{else}
 		<div class="border titleBarPanel">
-			<div class="containerHead"><h3>{lang}wcf.cheatDatabase.entry.count{/lang}</h3></div>
+			<div class="containerHead"><h3>{lang items=$entries|count}wcf.cheatDatabase.entry.count{/lang}</h3></div>
 		</div>
 		<div class="border borderMarginRemove">
 			<table class="tableList">
 				<thead>
 					<tr class="tableHead">
-						<th class="columnNumber{if $sortField == 'number'} active{/if}"{if $this->user->getPermission('mod.cheatDatabase.canDeleteEntry')} colspan="2"{/if}>
+						<th class="columnEntryID{if $sortField == 'entry.entryID'} active{/if}"{if $this->user->getPermission('mod.cheatDatabase.canDeleteEntry')} colspan="2"{/if}>
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=number&amp;sortOrder={if $sortField == 'bumber' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.number{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=entryID&amp;sortOrder={if $sortField == 'entry.entryID' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.entryID{/lang}{if $sortField == 'entry.entryID'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
-						<th class="columnPokemon{if $sortField == 'pokemon'} active{/if}">
+						<th class="columnPokedexNumber{if $sortField == 'entry.pokedexNumber'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=pokemon&amp;sortOrder={if $sortField == 'pokemon' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.pokemon{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=pokedexNumber&amp;sortOrder={if $sortField == 'entry.pokedexNumber' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.pokedexNumber{/lang}{if $sortField == 'entry.pokedexNumber'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
-						<th class="columnNickname{if $sortField == 'nickname'} active{/if}">
+						<th class="columnName{if $sortField == 'name'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=nickname&amp;sortOrder={if $sortField == 'nickname' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.nickname{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=name&amp;sortOrder={if $sortField == 'name' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.name{/lang}{if $sortField == 'name'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
-						<th class="columnTrainerName{if $sortField == 'trainerName'} active{/if}">
+						<th class="columnNickname{if $sortField == 'entry.nickname'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=trainerName&amp;sortOrder={if $sortField == 'trainerName' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.trainerName{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=nickname&amp;sortOrder={if $sortField == 'entry.nickname' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.nickname{/lang}{if $sortField == 'entry.nickname'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
-						<th class="columnTrainerID{if $sortField == 'trainerID'} active{/if}">
+						<th class="columnTrainerName{if $sortField == 'entry.trainerName'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=trainerID&amp;sortOrder={if $sortField == 'trainerID' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.trainerID{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=trainerName&amp;sortOrder={if $sortField == 'entry.trainerName' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.trainerName{/lang}{if $sortField == 'entry.trainerName'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
-						<th class="columnLevel{if $sortField == 'level'} active{/if}">
+						<th class="columnTrainerID{if $sortField == 'entry.trainerID'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=level&amp;sortOrder={if $sortField == 'level' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.level{/lang}{if $sortField == 'topic'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=trainerID&amp;sortOrder={if $sortField == 'entry.trainerID' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.trainerID{/lang}{if $sortField == 'entry.trainerID'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								</a>
+							</div>
+						</th>
+						<th class="columnLevel{if $sortField == 'entry.level'} active{/if}">
+							<div>
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=level&amp;sortOrder={if $sortField == 'entry.level' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.level{/lang}{if $sortField == 'entry.level'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
@@ -96,15 +103,18 @@
 						<tr class="{cycle name='className'}" id="entryRow{@$entry->entryID}">
 							{if $this->user->getPermission('mod.cheatDatabase.canDeleteEntry')}
 								<td class="columnIcon">
-									<a onclick="return confirm('{lang}wcf.cheatDatabase.entry.delete.sure{/lang}')" href="index.php?action=EntryDelete&amp;entryID={@$entry->entryID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}wcf.cheatDatabase.entry.delete.sure{/lang}" /></a>
+									<a onclick="return confirm('{lang}wcf.cheatDatabase.entry.delete.sure{/lang}')" href="index.php?action=CheatDatabaseEntryDelete&amp;entryID={@$entry->entryID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}wcf.cheatDatabase.entry.delete.sure{/lang}" /></a>
 								</td>
 							{/if}
-							<td class="columnNumber columnNumbers">
+							<td class="columnEntryID columnID">
+								{$entry->entryID}
+							</td>
+							<td class="columnPokedexNumber columnID">
 								{$entry->pokedexNumber}
 							</td>
-							<td class="columnPokemon columnIcon">
-								<img src="{@$entry->getSpritePath()}" alt="" /><br />
-								<span>{$entry->name}</span>
+							<td class="columnName columnText">
+								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}"><img src="{@$entry->getIconPath()}" alt="" /></a>
+								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}"><span>{$entry->name}</span></a>
 							</td>
 							<td class="columnNickname columnText">
 								{$entry->nickname}
