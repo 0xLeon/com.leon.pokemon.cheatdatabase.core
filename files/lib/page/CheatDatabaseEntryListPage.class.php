@@ -18,6 +18,7 @@ require_once(WCF_DIR.'lib/data/cheatDatabase/entry/EntryList.class.php');
  */
 class CheatDatabaseEntryListPage extends SortablePage {
 	public $templateName = 'cheatDatabaseEntryList';
+	public $neededPermissions = 'user.cheatDatabase.canUseCheatDatabase';
 	public $defaultSortField = 'entry.pokedexNumber';
 	public $defaultSortOrder = 'ASC';
 	public $deletedEntryID = 0;
@@ -59,7 +60,7 @@ class CheatDatabaseEntryListPage extends SortablePage {
 		
 		switch ($this->sortField) {
 			case 'name':
-				$this->sortField = 'name';
+				$this->sortField = 'pokemonName';
 				break;
 			case 'entryID':
 			case 'nickname':
@@ -104,8 +105,6 @@ class CheatDatabaseEntryListPage extends SortablePage {
 		}
 		
 		PageMenu::setActiveMenuItem('wcf.header.menu.cheatDatabase');
-		
-		WCF::getUser()->checkPermission('user.cheatDatabase.canUseCheatDatabase');
 		
 		parent::show();
 	}

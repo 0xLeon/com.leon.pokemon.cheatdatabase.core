@@ -8,7 +8,7 @@
 {* --- quick search controls --- *}
 {assign var='searchFieldTitle' value='{lang}wcf.cheatDatabase.entry.search.query{/lang}'}
 {capture assign=searchHiddenFields}
-	<input type="hidden" name="types[]" value="event" />
+	<input type="hidden" name="types[]" value="entry" />
 {/capture}
 {* --- end --- *}
 {include file='header' sandbox=false}
@@ -29,6 +29,17 @@
 	{if $deletedEntryID}
 		<p class="success">{lang}wcf.cheatDatabase.entry.delete.success{/lang}</p>	
 	{/if}
+	
+	<div class="contentHeader">
+		{pages print=true assign=pagesLinks link="index.php?page=CheatDatabaseEntryList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
+		
+		<div class="largeButtons">
+			<ul>
+				{if $this->user->getPermission('mod.cheatDatabase.canAddEntry')}<li><a href="index.php?form=CheatDatabaseEntryAdd{@SID_ARG_2ND}" title="{lang}wcf.cheatDatabase.entry.add{/lang}"><img src="{icon}cheatDatabaseEntryAddM.png{/icon}" alt="" /> <span>{lang}wcf.cheatDatabase.entry.add{/lang}</span></a></li>{/if}
+				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
+			</ul>
+		</div>
+	</div>
 
 	{if $entries|count == 0}
 		<div class="border content">
@@ -138,11 +149,11 @@
 	{/if}
 	
 	<div class="contentFooter">
-		{pages print=true link="index.php?page=CheatDatabaseEntryList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
+		{@$pagesLinks}
 		
 		<div class="largeButtons">
 			<ul>
-				<li><a href="index.php?form=CheatDatabaseEntryAdd{@SID_ARG_2ND}" title="{lang}wcf.cheatDatabase.entry.add{/lang}"><img src="{icon}cheatDatabaseEntryAddM.png{/icon}" alt="" /> <span>{lang}wcf.cheatDatabase.entry.add{/lang}</span></a></li>
+				{if $this->user->getPermission('mod.cheatDatabase.canAddEntry')}<li><a href="index.php?form=CheatDatabaseEntryAdd{@SID_ARG_2ND}" title="{lang}wcf.cheatDatabase.entry.add{/lang}"><img src="{icon}cheatDatabaseEntryAddM.png{/icon}" alt="" /> <span>{lang}wcf.cheatDatabase.entry.add{/lang}</span></a></li>{/if}
 				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
 			</ul>
 		</div>
