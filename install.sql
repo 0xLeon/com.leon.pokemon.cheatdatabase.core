@@ -5,6 +5,7 @@ CREATE TABLE wcf1_cheat_database_entry (
 	username	VARCHAR(255)		NOT NULL,
 	pokedexNumber	INT(5)			NOT NULL,
 	nickname	VARCHAR(255)		NOT NULL DEFAULT '',
+	gender		TINYINT(1) USIGNED	NOT NULL DEFAULT 0,
 	trainerName	VARCHAR(255)		NOT NULL,
 	trainerID	INT(5) UNSIGNED		NOT NULL DEFAULT 0,
 	level		TINYINT(3) UNSIGNED	NOT NULL DEFAULT 0,
