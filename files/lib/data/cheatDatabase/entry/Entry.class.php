@@ -2,6 +2,9 @@
 // wcf imports
 require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
 
+// cheat database imports
+require_once(WCF_DIR.'lib/data/cheatDatabase/entry/message/EntryMessage.class.php');
+
 /**
  * Represents a cheat database entry.
  *
@@ -67,7 +70,7 @@ class Entry extends DatabaseObject {
 	 * @return EntryEditor
 	 */
 	public function getEditor() {
-		require_once (WCF_DIR . 'lib/data/cheatDatabase/entry/EntryEditor.class.php');
+		require_once(WCF_DIR.'lib/data/cheatDatabase/entry/EntryEditor.class.php');
 		return new EntryEditor(null, $this->data);
 	}
 }
