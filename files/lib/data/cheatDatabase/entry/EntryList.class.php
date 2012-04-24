@@ -27,8 +27,13 @@ class EntryList extends DatabaseObjectList {
 	 * @see DatabaseObjectList::countObjects()
 	 */
 	public function countObjects() {
-		$sql = "SELECT	COUNT(*) AS count
-			FROM	wcf".WCF_N."_cheat_database_entry entry
+		// todo: what's up with name filtering
+		$sql = "SELECT		COUNT(*) AS count
+			FROM		wcf".WCF_N."_cheat_database_entry entry
+			LEFT JOIN	wcf".WCF_N."_language_item language
+			ON		(language.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
+					AND (language.languageID = ".WCF::getUser()->languageID.")
+			".$this->sqlJoins."
 			".(!empty($this->sqlConditions) ? "WHERE ".$this->sqlConditions : '');
 		$row = WCF::getDB()->getFirstRow($sql);
 		
@@ -45,7 +50,7 @@ class EntryList extends DatabaseObjectList {
 			FROM		wcf".WCF_N."_cheat_database_entry entry
 			LEFT JOIN	wcf".WCF_N."_language_item language
 			ON		(language.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
-					AND (language.languageID = ".WCF::getUser()->languageID."
+					AND (language.languageID = ".WCF::getUser()->languageID.")
 			".$this->sqlJoins."
 			".(!empty($this->sqlConditions) ? "WHERE ".$this->sqlConditions : '')."
 			".(!empty($this->sqlOrderBy) ? "ORDER BY ".$this->sqlOrderBy : '');
