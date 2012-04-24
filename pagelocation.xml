@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/pagelocation.xsd">
+	<import>
+		<pagelocation name="wcf.usersOnline.location.cheatDatabase">
+			<pattern><![CDATA[index\.php\?page=CheatDatabaseEntryList]]></pattern>
+		</pagelocation>
+		<pagelocation name="wcf.usersOnline.location.cheatDatabase.entry">
+			<pattern><![CDATA[index\.php\?form=CheatDatabaseEntry&.*entryID=(\d+)]]></pattern>
+			<classpath>lib/data/page/location/CheatDatabaseEntryLocation.class.php</classpath>
+		</pagelocation>
+		<pagelocation name="wcf.usersOnline.location.cheatDatabase.entry.add">
+			<pattern><![CDATA[index\.php\?form=CheatDatabaseEntryAdd]]></pattern>
+		</pagelocation>
+		<pagelocation name="wcf.usersOnline.location.cheatDatabase.entry.edit">
+			<pattern><![CDATA[index\.php\?form=CheatDatabaseEntryEdit&.*entryID=(\d+)]]></pattern>
+			<classpath>lib/data/page/location/CheatDatabaseEntryLocation.class.php</classpath>
+		</pagelocation>
+	</import>
+</data>
