@@ -59,8 +59,11 @@ class CheatDatabaseEntryListPage extends SortablePage {
 		parent::validateSortField();
 		
 		switch ($this->sortField) {
-			case 'name':
+			case 'pokemon':
 				$this->sortField = 'pokemonName';
+				break;
+			case 'name':
+				$this->sortField = 'message.subject';
 				break;
 			case 'entryID':
 			case 'nickname':

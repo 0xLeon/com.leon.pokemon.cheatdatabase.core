@@ -69,10 +69,17 @@
 								</a>
 							</div>
 						</th>
-						<th class="columnName{if $sortField == 'name'} active{/if}">
+						<th class="columnPokemon{if $sortField == 'pokemonName'} active{/if}">
 							<div>
-								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=name&amp;sortOrder={if $sortField == 'name' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
-									{lang}wcf.cheatDatabase.entry.name{/lang}{if $sortField == 'name'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=pokemon&amp;sortOrder={if $sortField == 'pokemonName' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.pokemon{/lang}{if $sortField == 'pokemonName'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
+								</a>
+							</div>
+						</th>
+						<th class="columnName{if $sortField == 'message.subject'} active{/if}">
+							<div>
+								<a href="index.php?page=CheatDatabaseEntryList&amp;pageNo={@$pageNo}&amp;sortField=name&amp;sortOrder={if $sortField == 'message.subject' && $sortOrder == 'DESC'}ASC{else}DESC{/if}{@SID_ARG_2ND}">
+									{lang}wcf.cheatDatabase.entry.name{/lang}{if $sortField == 'message.subject'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}
 								</a>
 							</div>
 						</th>
@@ -123,9 +130,11 @@
 							<td class="columnPokedexNumber columnID">
 								{$entry->pokedexNumber}
 							</td>
+							<td class="columnPokemon columnIcon">
+								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}"><img src="{@$entry->getIconPath()}" alt="{$entry->pokemonName}" title="{$entry->pokemonName}" /></a>
+							</td>
 							<td class="columnName columnText">
-								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}"><img src="{@$entry->getIconPath()}" alt="" /></a>
-								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}"><span>{$entry->name}</span></a>
+								<a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}">{$entry->subject}</a>
 							</td>
 							<td class="columnNickname columnText">
 								{$entry->nickname}
@@ -134,7 +143,7 @@
 								{$entry->trainerName}
 							</td>
 							<td class="columnTrainerID columnNumbers">
-								{$entry->trainerID}
+								{'%05d'|sprintf:$entry->trainerID}
 							</td>
 							<td class="columnLevel columnNumbers">
 								{$entry->level}
