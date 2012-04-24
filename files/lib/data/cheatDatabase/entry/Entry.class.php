@@ -26,7 +26,7 @@ class Entry extends Message {
 				FROM		wcf".WCF_N."_cheat_database_entry entry
 				LEFT JOIN	wcf".WCF_N."_language_item language
 				ON		(language.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
-						AND (language.languageID = ".WCF::getUser()->languageID."
+						AND (language.languageID = ".WCF::getUser()->languageID.")
 				WHERE		entry.entryID = ".$entryID;
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
@@ -35,6 +35,10 @@ class Entry extends Message {
 	}
 	
 	public function getSpritePath() {
-		
+		return RELATIVE_WCF_DIR.'images/pokemon/sprites/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d.png', $this->pokedexNumber);
+	}
+	
+	public function getIconPath() {
+		return RELATIVE_WCF_DIR.'images/pokemon/icons/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d.png', $this->pokedexNumber);
 	}
 }
