@@ -26,13 +26,17 @@ class Entry extends DatabaseObject {
 	public function __construct($entryID, $row = null, $messageID = null) {
 		if (($entryID !== null) || ($messageID !== null && $messageID !== 0)) {
 			$sql = "SELECT		entry.*,
-						language.languageItemValue AS pokemonName,
+						languagePokemonName.languageItemValue AS pokemonName,
+						languageBallName.languageItemValue AS ballName,
 						message.*,
 						user_table.*
 				FROM		wcf".WCF_N."_cheat_database_entry entry
-				LEFT JOIN	wcf".WCF_N."_language_item language
-				ON		(language.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
-						AND (language.languageID = ".WCF::getUser()->languageID.")
+				LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
+				ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
+						AND (languagePokemonName.languageID = ".WCF::getUser()->languageID.")
+				LEFT JOIN	wcf".WCF_N."_language_item languageBallName
+				ON		(languageBallName.languageItem = CONCAT('wcf.cheatDatabase.entry.ball.', entry.ball))
+						AND (languageBallName.languageID = ".WCF::getUser()->languageID.")
 				LEFT JOIN	wcf" . WCF_N . "_cheat_database_entry_message message
 				ON 		(entry.messageID = message.messageID)
 				LEFT JOIN	wcf".WCF_N."_user user_table
@@ -62,6 +66,10 @@ class Entry extends DatabaseObject {
 	
 	public function getIconPath() {
 		return RELATIVE_WCF_DIR.'images/pokemon/icons/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d.png', $this->pokedexNumber);
+	}
+	
+	public function getBallIconPath() {
+		return RELATIVE_WCF_DIR.'images/pokemon/balls/'.$this->ball.'.png';
 	}
 	
 	/**
