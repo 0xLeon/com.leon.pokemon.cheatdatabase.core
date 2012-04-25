@@ -26,7 +26,7 @@
 	<div class="mainHeadline">
 		<img src="{icon}cheatDatabaseEntryL.png{/icon}" alt="" />
 		<div class="headlineContainer">
-			<h2>{$entry->subject}</h2>
+			<h2><a href="index.php?page=CheatDatabaseEntry&amp;entryID={@$entry->entryID}{@SID_ARG_2ND}">{$entry->subject}</a></h2>
 		</div>
 	</div>
 	
@@ -46,13 +46,16 @@
 	{capture assign='messageFooterClass'}messageFooter{@$this->getStyle()->getVariable('messages.footer.alignment')|ucfirst}{/capture}
 	
 	<div id="entry{$entry->entryID}" class="message">
-		<div class="{@$messageClass}">
+		<div class="messageInner {@$messageClass} container-3">
 			<a id="entryMessage{@$entry->messageID}"></a>
+			
+			{include file='cheatDatabaseEntrySidebar'}
+			
 			<div class="messageContent">
 				<div class="messageContentInner color-1">
 					<div class="messageHeader">
 						<div class="containerIcon">
-							<img src="{icon}cheatDatabaseEntryM.png{/icon}" alt=""/>
+							<img src="{icon}cheatDatabaseEntryM.png{/icon}" alt="" />
 						</div>
 						
 						<div class="containerContent">
