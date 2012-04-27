@@ -11,7 +11,7 @@ require_once(WCF_DIR.'lib/data/cheatDatabase/entry/Entry.class.php');
  * @author	Stefan Hahn
  * @copyright	2012 Stefan Hahn
  * @license	Simplified BSD License License <http://projects.swallow-all-lies.com/licenses/simplified-bsd-license.txt>
- * @package	com.leon.cheatdatabase.core
+ * @package	com.leon.pokemon.cheatdatabase.core
  * @subpackage	data.cheatDatabase.entry
  * @category 	Cheat Database
  */

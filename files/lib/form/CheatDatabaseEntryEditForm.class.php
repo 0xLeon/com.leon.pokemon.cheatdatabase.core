@@ -8,7 +8,7 @@ require_once(WCF_DIR.'lib/form/CheatDatabaseEntryAddForm.class.php');
  * @author	Stefan Hahn
  * @copyright	2012 Stefan Hahn
  * @license	Simplified BSD License License <http://projects.swallow-all-lies.com/licenses/simplified-bsd-license.txt>
- * @package	com.leon.cheatdatabase.core
+ * @package	com.leon.pokemon.cheatdatabase.core
  * @subpackage	form
  * @category 	Cheat Database
  */
