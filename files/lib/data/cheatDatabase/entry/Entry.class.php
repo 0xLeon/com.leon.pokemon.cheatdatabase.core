@@ -3,6 +3,7 @@
 require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
 
 // cheat database imports
+require_once(WCF_DIR.'lib/data/cheatDatabase/entry/EntryRibbon.class.php');
 require_once(WCF_DIR.'lib/data/cheatDatabase/entry/message/EntryMessage.class.php');
 
 /**
@@ -16,6 +17,8 @@ require_once(WCF_DIR.'lib/data/cheatDatabase/entry/message/EntryMessage.class.ph
  * @category 	Cheat Database
  */
 class Entry extends DatabaseObject {
+	protected $ribbons = null;
+	
 	/**
 	 * Creates a new Entry object.
 	 * 
@@ -28,19 +31,16 @@ class Entry extends DatabaseObject {
 			$sql = "SELECT		entry.*,
 						languagePokemonName.languageItemValue AS pokemonName,
 						languageBallName.languageItemValue AS ballName,
-						message.*,
-						user_table.*
+						message.*
 				FROM		wcf".WCF_N."_cheat_database_entry entry
 				LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
-				ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
+				ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber, '.', entry.form))
 						AND (languagePokemonName.languageID = ".WCF::getUser()->languageID.")
 				LEFT JOIN	wcf".WCF_N."_language_item languageBallName
 				ON		(languageBallName.languageItem = CONCAT('wcf.cheatDatabase.entry.ball.', entry.ball))
 						AND (languageBallName.languageID = ".WCF::getUser()->languageID.")
 				LEFT JOIN	wcf" . WCF_N . "_cheat_database_entry_message message
 				ON 		(entry.messageID = message.messageID)
-				LEFT JOIN	wcf".WCF_N."_user user_table
-				ON		(message.userID = user_table.userID)
 				WHERE		".(($messageID !== null && $messageID !== 0) ? ("entry.messageID = ".$messageID) : ("entry.entryID = ".$entryID));
 			$row = WCF::getDB()->getFirstRow($sql);
 			
@@ -61,7 +61,7 @@ class Entry extends DatabaseObject {
 	}
 	
 	public function getSpritePath() {
-		return RELATIVE_WCF_DIR.'images/pokemon/sprites/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d.png', $this->pokedexNumber);
+		return RELATIVE_WCF_DIR.'images/pokemon/sprites/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d', $this->pokedexNumber).(($this->form > 0) ? '.'.sprintf('%d', $this->form) : '').'.png';
 	}
 	
 	public function getIconPath() {
@@ -70,6 +70,54 @@ class Entry extends DatabaseObject {
 	
 	public function getBallIconPath() {
 		return RELATIVE_WCF_DIR.'images/pokemon/balls/'.$this->ball.'.png';
+	}
+	
+	/**
+	 * Returns the list of ribbons.
+	 * 
+	 * @return	array<EntryRibbon>
+	 */
+	public function getRibbons() {
+		if ($this->ribbons === null) {
+			$this->ribbons = array();
+			
+			$sql = "SELECT		ribbon.*,
+						languageRibbonName.languageItemValue AS ribbonName
+				FROM		wcf".WCF_N."_cheat_database_ribbon_to_entry ribbon
+				LEFT JOIN	wcf".WCF_N."_language_item languageRibbonName
+				ON		(languageRibbonName.languageItem = CONCAT('wcf.cheatDatabase.entry.ribbon.', ribbon.ribbonID))
+						AND (languageRibbonName.languageID = ".WCF::getUser()->languageID.")
+				WHERE		ribbon.entryID = ".$this->entryID."
+				ORDER BY	ribbon.ribbonID";
+			$result = WCF::getDB()->sendQuery($sql);
+			while ($row = WCF::getDB()->fetchArray($result)) {
+				$this->ribbons[] = new EntryRibbon(null, null, $row);
+			}
+		}
+		
+		return $this->ribbons;
+	}
+	
+	/**
+	 * Sets a ribbon.
+	 * 
+	 * @param	EntryRibbon	$ribbon
+	 */
+	public function setRibbon(EntryRibbon $ribbon) {
+		if ($this->ribbons === null) {
+			$this->ribbons = array();
+		}
+		
+		$this->ribbons[] = $ribbon;
+	}
+	
+	/**
+	 * Sets the ribbons.
+	 * 
+	 * @param	array<EntryRibbon>	$ribbons
+	 */
+	public function setRibbons($ribbons) {
+		$this->ribbons = $ribbons;
 	}
 	
 	/**
