@@ -32,6 +32,7 @@
 		<groupoptions>groupoptions.xml</groupoptions>
 		<pagelocation>pagelocation.xml</pagelocation>
 		<searchablemessagetypes>searchablemessagetypes.xml</searchablemessagetypes>
+		<styleattributes>styleattributes.xml</styleattributes>
 		<languages languagecode="de-informal">de-informal.xml</languages>
 		<languages languagecode="de">de.xml</languages>
 	</instructions>
