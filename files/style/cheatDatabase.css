@@ -1,5 +1,24 @@
-.entryDetails {
-	border-width: 1px 0;
-	border-style: solid;
+.cheatDatabaseEntry .messageSubject,
+.cheatDatabaseEntry .entryDetails {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 	overflow: auto;
+}
+
+.cheatDatabaseEntry .contentHeader,
+.cheatDatabaseEntry .contentFooter {
+	margin-top: 7px;
+}
+
+.cheatDatabaseEntry .entryRibbons li {
+	display: inline-block !important;
+	height: 38px !important;
+}
+
+.cheatDatabaseEntry .message {
+	margin-bottom: 7px;
+}
+
+.cheatDatabaseEntry .messageInner {
+	padding: 10px 20px !important;
 }
