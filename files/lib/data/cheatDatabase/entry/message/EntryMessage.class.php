@@ -24,12 +24,8 @@ class EntryMessage extends Message implements MessageSidebarObject {
 	 */
 	public function __construct($messageID, $row = null) {
 		if ($messageID !== null) {
-			$sql = "SELECT		user_table.*, avatar.*, message.*
+			$sql = "SELECT		message.*
 				FROM 		wcf".WCF_N."_cheat_database_entry_message message
-				LEFT JOIN	wcf".WCF_N."_user user_table
-				ON		(user_table.userID = message.userID)
-				LEFT JOIN	wcf".WCF_N."_avatar avatar
-				ON		(avatar.avatarID = user_table.avatarID)
 				WHERE 		message.messageID = ".$messageID;
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
@@ -42,7 +38,7 @@ class EntryMessage extends Message implements MessageSidebarObject {
 	 */
 	protected function handleData($data) {
 		parent::handleData($data);
-		$this->user = new UserProfile(null, $data);
+		$this->user = new UserProfile($this->userID);
 	}
 	
 	/**
