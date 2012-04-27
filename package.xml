@@ -33,6 +33,7 @@
 		<pagelocation>pagelocation.xml</pagelocation>
 		<searchablemessagetypes>searchablemessagetypes.xml</searchablemessagetypes>
 		<styleattributes>styleattributes.xml</styleattributes>
+		<script>acp/installCheatDatabase.php</script>
 		<languages languagecode="de-informal">de-informal.xml</languages>
 		<languages languagecode="de">de.xml</languages>
 	</instructions>
