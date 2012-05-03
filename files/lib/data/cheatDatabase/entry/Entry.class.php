@@ -17,7 +17,19 @@ require_once(WCF_DIR.'lib/data/cheatDatabase/entry/message/EntryMessage.class.ph
  * @category 	Cheat Database
  */
 class Entry extends DatabaseObject {
+	/**
+	 * List of all ribbons of this entry.
+	 * 
+	 * @var	array<EntryRibbon>
+	 */
 	protected $ribbons = null;
+	
+	/**
+	 * Message object of the associated entry message.
+	 * 
+	 * @var	EntryMessage
+	 */
+	public $message = null;
 	
 	/**
 	 * Creates a new Entry object.
@@ -30,7 +42,8 @@ class Entry extends DatabaseObject {
 		if (($entryID !== null) || ($messageID !== null && $messageID !== 0)) {
 			$sql = "SELECT		entry.*,
 						languagePokemonName.languageItemValue AS pokemonName,
-						languageBallName.languageItemValue AS ballName
+						languageBallName.languageItemValue AS ballName,
+						message.*
 				FROM		wcf".WCF_N."_cheat_database_entry entry
 				LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
 				ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber, '.', entry.form))
@@ -38,14 +51,13 @@ class Entry extends DatabaseObject {
 				LEFT JOIN	wcf".WCF_N."_language_item languageBallName
 				ON		(languageBallName.languageItem = CONCAT('wcf.cheatDatabase.entry.ball.', entry.ball))
 						AND (languageBallName.languageID = ".WCF::getUser()->languageID.")
+				LEFT JOIN	wcf" . WCF_N . "_cheat_database_entry_message message
+				ON 		(entry.messageID = message.messageID)
 				WHERE		".(($messageID !== null && $messageID !== 0) ? ("entry.messageID = ".$messageID) : ("entry.entryID = ".$entryID));
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
 		
-		if ($row) {
-			$row['message'] = new EntryMessage($row['messageID']);
-		}
-		
+		$this->message = new EntryMessage(null, $row);
 		parent::__construct($row);
 	}
 	
