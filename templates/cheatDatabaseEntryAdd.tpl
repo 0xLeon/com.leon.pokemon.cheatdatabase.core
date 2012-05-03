@@ -1,7 +1,21 @@
 {include file='documentHeader'}
 <head>
-	<title>{lang}wcf.cheatDatabase.entry.add{/lang} - {lang}wcf.cheatDatabase.title{/lang} - {PAGE_TITLE}</title>
+	<title>{lang}wcf.cheatDatabase.entry.{$action}{/lang} - {lang}wcf.cheatDatabase.title{/lang} - {PAGE_TITLE}</title>
 	{include file='headInclude' sandbox=false}
+	
+	<script src="{@RELATIVE_WCF_DIR}js/Calendar.class.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		var calendar = new Calendar('{$monthList}', '{$weekdayList}', {@$startOfWeek});
+		//]]>
+	</script>
+	<script type="text/javascript">
+		//<![CDATA[
+		var INLINE_IMAGE_MAX_WIDTH = {@INLINE_IMAGE_MAX_WIDTH}; 
+		//]]>
+	</script>
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ImageResizer.class.js"></script>
+	{if $canUseBBCodes}{include file="wysiwyg"}{/if}
 </head>
 <body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
 {* --- quick search controls --- *}
@@ -31,30 +45,47 @@
 		
 		{if $preview|isset}
 			<div class="border messagePreview">
-				<div class="containerHead">
-					<h3>{lang}wcf.cheatDatabase.entry.preview{/lang}</h3>
-				</div>
-				<div class="message content cheatDatabaseEntry">
-					<div class="messageInner container-1">
-						{if $subject}<h3 class="messageSubject" ><span>{$subject}</span></h3>{/if}
-						
-						<div class="messageContent">
-							{include file='cheatDatabaseEntrySidebar'}
-							{include file='cheatDatabaseEntryDetails'}
-							
-							<div class="messageBody">
-								{@$preview}
-							</div>
-						</div>
-					</div>
-				</div>
+				{include file='cheatDatabaseEntryBox'}
 			</div>
 		{/if}
 		
 		<form enctype="multipart/form-data" method="post" action="index.php?form=CheatDatabaseEntry{$action|ucfirst}{if $entryID}&amp;entryID={@$entryID}{/if}">
 			<div class="border content">
 				<div class="container-1">
-					
+					<fieldset>
+						<legend>{lang}wcf.cheatDatabase.entry.form.settings{/lang}</legend>
+						
+						{if !$this->user->userID}
+							<div class="formElement{if $errorField == 'username'} formError{/if}">
+								<div class="formFieldLabel">
+									<label for="username">{lang}wcf.user.username{/lang}</label>
+								</div>
+								<div class="formField">
+									<input type="text" class="inputText" name="username" id="username" value="{$username}" tabindex="13" />
+									{if $errorField == 'username'}
+										<p class="innerError">
+											{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+											{if $errorType == 'notValid'}{lang}wcf.user.error.username.notValid{/lang}{/if}
+											{if $errorType == 'notAvailable'}{lang}wcf.user.error.username.notUnique{/lang}{/if}
+										</p>
+									{/if}
+								</div>
+							</div>
+						{/if}
+						
+						<div class="formElement{if $errorField == 'subject'} formError{/if}">
+							<label class="formFieldLabel" for="subject">{lang}wcf.cheatDatabase.entry.form.name{/lang}</label>
+							<div class="formField">
+								<input type="text" id="subject" name="subject" class="inputText" value="{$subject}" />
+								{if $errorField == 'subject'}
+									<p class="innerError">
+										{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+										{if $errorType == 'notValid'}{lang}wcf.cheatDatabase.entry.form.error.name.notValid{/lang}{/if}
+									</p>
+								{/if}
+							</div>
+						</div>
+					</fieldset>
 					
 					{if $additionalFields|isset}{@$additionalFields}{/if}
 				</div>
