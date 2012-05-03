@@ -30,8 +30,7 @@ class Entry extends DatabaseObject {
 		if (($entryID !== null) || ($messageID !== null && $messageID !== 0)) {
 			$sql = "SELECT		entry.*,
 						languagePokemonName.languageItemValue AS pokemonName,
-						languageBallName.languageItemValue AS ballName,
-						message.*
+						languageBallName.languageItemValue AS ballName
 				FROM		wcf".WCF_N."_cheat_database_entry entry
 				LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
 				ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber, '.', entry.form))
@@ -39,14 +38,12 @@ class Entry extends DatabaseObject {
 				LEFT JOIN	wcf".WCF_N."_language_item languageBallName
 				ON		(languageBallName.languageItem = CONCAT('wcf.cheatDatabase.entry.ball.', entry.ball))
 						AND (languageBallName.languageID = ".WCF::getUser()->languageID.")
-				LEFT JOIN	wcf" . WCF_N . "_cheat_database_entry_message message
-				ON 		(entry.messageID = message.messageID)
 				WHERE		".(($messageID !== null && $messageID !== 0) ? ("entry.messageID = ".$messageID) : ("entry.entryID = ".$entryID));
 			$row = WCF::getDB()->getFirstRow($sql);
-			
-			if ($row) {
-				$row['message'] = new EntryMessage(null, $row);
-			}
+		}
+		
+		if ($row) {
+			$row['message'] = new EntryMessage($row['messageID']);
 		}
 		
 		parent::__construct($row);

@@ -47,8 +47,7 @@ class EntryList extends DatabaseObjectList {
 		$sql = "SELECT		".(!empty($this->sqlSelects) ? $this->sqlSelects.',' : '')."
 					entry.*,
 					languagePokemonName.languageItemValue AS pokemonName,
-					languageBallName.languageItemValue AS ballName,
-					message.*
+					languageBallName.languageItemValue AS ballName
 			FROM		wcf".WCF_N."_cheat_database_entry entry
 			LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
 			ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber, '.', entry.form))
@@ -56,8 +55,6 @@ class EntryList extends DatabaseObjectList {
 			LEFT JOIN	wcf".WCF_N."_language_item languageBallName
 			ON		(languageBallName.languageItem = CONCAT('wcf.cheatDatabase.entry.ball.', entry.ball))
 					AND (languageBallName.languageID = ".WCF::getUser()->languageID.")
-			LEFT JOIN	wcf" . WCF_N . "_cheat_database_entry_message message
-			ON 		(entry.messageID = message.messageID)
 			".$this->sqlJoins."
 			".(!empty($this->sqlConditions) ? "WHERE ".$this->sqlConditions : '')."
 			".(!empty($this->sqlOrderBy) ? "ORDER BY ".$this->sqlOrderBy : '');
