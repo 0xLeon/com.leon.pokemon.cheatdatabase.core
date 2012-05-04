@@ -15,7 +15,7 @@
 			
 			<div class="containerContent">
 				<p class="smallFont light">{@$entry->message->time|time}</p>
-				<p class="smallFont light">{lang}wcf.cheatDatabase.entry.by{/lang} {if $entry->userID}<a href="index.php?page=User&amp;userID={@$entry->userID}{@SID_ARG_2ND}">{$entry->username}</a>{else}{$entry->username}{/if}</p>
+				<p class="smallFont light">{lang userID=$entry->userID username=$entry->username}wcf.cheatDatabase.entry.by{/lang}</p>
 			</div>
 		</div>
 		
