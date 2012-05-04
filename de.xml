@@ -21,6 +21,9 @@
 		<item name="wcf.acp.group.option.mod.cheatDatabase.canDeleteEntry"><![CDATA[Kann Einträge löschen]]></item>
 		<item name="wcf.acp.group.option.mod.cheatDatabase.canDeleteEntry.description"><![CDATA[Mitglieder dieser Benutzergruppe können Cheat-Datenbank-Einträge löschen.]]></item>
 	</category>
+	<category name="wcf.search">
+		<item name="wcf.search.type.entry"><![CDATA[Cheatdatenbankeinträge]]></item>
+	</category>
 	<category name="wcf.cheatDatabase">
 		<item name="wcf.cheatDatabase.title"><![CDATA[Cheat-Datenbank]]></item>
 	</category>
@@ -33,7 +36,8 @@
 		<item name="wcf.cheatDatabase.entry.delete"><![CDATA[Eintrag löschen]]></item>
 		<item name="wcf.cheatDatabase.entry.delete.sure"><![CDATA[Wollen Sie diesen Eintrag wirklich löschen?]]></item>
 		<item name="wcf.cheatDatabase.entry.delete.success"><![CDATA[Der Eintrag wurde erfolgreich gelöscht.]]></item>
-		<item name="wcf.cheatDatabase.entry.by"><![CDATA[Von]]></item>
+		<item name="wcf.cheatDatabase.entry.by"><![CDATA[Von {if $userID}<a href="index.php?page=User&amp;userID={$userID}">{$username}</a>{else}{$username}{/if}]]></item>
+		<item name="wcf.cheatDatabase.entry.createdBy"><![CDATA[Eintrag erstellt von {if $userID}<a href="index.php?page=User&amp;userID={$userID}">{$username}</a>{else}{$username}{/if}]]></item>
 		<item name="wcf.cheatDatabase.entry.search.query"><![CDATA[Einträge suchen]]></item>
 		<item name="wcf.cheatDatabase.entry.entryID"><![CDATA[Eintrags-ID]]></item>
 		<item name="wcf.cheatDatabase.entry.pokedexNumber"><![CDATA[Nummer]]></item>
