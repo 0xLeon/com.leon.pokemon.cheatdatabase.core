@@ -34,12 +34,11 @@ class EntryList extends DatabaseObjectList {
 	 * @see DatabaseObjectList::countObjects()
 	 */
 	public function countObjects() {
-		// todo: what's up with name filtering
+		// note: do name and ball filtering by getting IDs
 		$sql = "SELECT		COUNT(*) AS count
 			FROM		wcf".WCF_N."_cheat_database_entry entry
-			LEFT JOIN	wcf".WCF_N."_language_item languagePokemonName
-			ON		(languagePokemonName.languageItem = CONCAT('wcf.cheatDatabase.entry.pokemon.', entry.pokedexNumber))
-					AND (languagePokemonName.languageID = ".WCF::getUser()->languageID.")
+			LEFT JOIN	wcf".WCF_N."_cheat_database_entry_message message
+			ON 		(entry.messageID = message.messageID)
 			".$this->sqlJoins."
 			".(!empty($this->sqlConditions) ? "WHERE ".$this->sqlConditions : '');
 		$row = WCF::getDB()->getFirstRow($sql);
