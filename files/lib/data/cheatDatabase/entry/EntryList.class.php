@@ -24,6 +24,13 @@ class EntryList extends DatabaseObjectList {
 	public $entries = array();
 	
 	/**
+	 * Class name of the result object class
+	 * 
+	 * @var	string
+	 */
+	public $objectClassName = 'Entry';
+	
+	/**
 	 * @see DatabaseObjectList::countObjects()
 	 */
 	public function countObjects() {
@@ -64,7 +71,7 @@ class EntryList extends DatabaseObjectList {
 		$result = WCF::getDB()->sendQuery($sql, $this->sqlLimit, $this->sqlOffset);
 		
 		while ($row = WCF::getDB()->fetchArray($result)) {
-			$this->entries[] = new Entry(null, $row);
+			$this->entries[] = new $this->objectClassName(null, $row);
 		}
 	}
 	
