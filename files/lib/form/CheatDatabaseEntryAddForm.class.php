@@ -5,6 +5,7 @@ require_once(WCF_DIR.'lib/page/util/InlineCalendar.class.php');
 require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
 
 // cheat database imports
+require_once(WCF_DIR.'lib/data/cheatDatabase/entry/EntryRibbon.class.php');
 require_once(WCF_DIR.'lib/data/cheatDatabase/entry/EntryEditor.class.php');
 
 /**
@@ -157,6 +158,13 @@ class CheatDatabaseEntryAddForm extends MessageForm {
 	 */
 	public $ball = 0;
 	
+	/**
+	 * Ribbons
+	 * 
+	 * @var	array<integer>
+	 */
+	public $ribbonIDs = array();
+	
 	
 	/**
 	 * @see Form::readFormParameters()
@@ -180,8 +188,7 @@ class CheatDatabaseEntryAddForm extends MessageForm {
 		if (isset($_POST['characteristic'])) $this->characteristic = intval($_POST['characteristic']);
 		if (isset($_POST['isShiny'])) $this->isShiny = (boolean)intval($_POST['isShiny']);
 		if (isset($_POST['ball'])) $this->ball = intval($_POST['ball']);
-		
-		// todo: ribbons
+		if (isset($_POST['ribbonIDs']) && is_array($_POST['ribbonIDs'])) $this->ribbonIDs = ArrayUtil::toIntegerArray($_POST['ribbonIDs']);
 	}
 	
 	/**
@@ -255,7 +262,9 @@ class CheatDatabaseEntryAddForm extends MessageForm {
 			'nature' => $this->nature,
 			'characteristic' => $this->characteristic,
 			'isShiny' => $this->isShiny,
-			'ball' => $this->ball
+			'ball' => $this->ball,
+			'ribbonIDs' => $this->ribbonIDs,
+			'ribbons' => EntryRibbon::getAllRibbons()
 		));
 	}
 	

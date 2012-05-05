@@ -57,8 +57,7 @@ class CheatDatabaseEntryEditForm extends CheatDatabaseEntryAddForm {
 		$this->characteristic = $this->entry->characteristic;
 		$this->isShiny = $this->entry->isShiny;
 		$this->ball = $this->entry->ball;
-		
-		// todo: ribbons
+		$this->ribbonIDs = $this->entry->getRibbonIDs();
 	}
 	
 	/**

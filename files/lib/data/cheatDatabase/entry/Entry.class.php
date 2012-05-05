@@ -115,6 +115,27 @@ class Entry extends DatabaseObject {
 	}
 	
 	/**
+	 * Returns the list of all the ribbon's IDs
+	 * 
+	 * @return	array<integer>
+	 */
+	public function getRibbonIDs() {
+		$ribbonIDs = array();
+		
+		if ($this->ribbons === null) {
+			$this->getRibbons();
+		}
+		
+		if (count($this->ribbons)) {
+			foreach ($this->ribbons as $ribbon) {
+				$ribbonIDs[] = $ribbon->ribbonID;
+			}
+		}
+		
+		return $ribbonIDs;
+	}
+	
+	/**
 	 * Sets a ribbon.
 	 * 
 	 * @param	EntryRibbon	$ribbon

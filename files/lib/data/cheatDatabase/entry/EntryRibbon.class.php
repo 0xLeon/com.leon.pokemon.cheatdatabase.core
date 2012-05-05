@@ -48,4 +48,27 @@ class EntryRibbon extends DatabaseObject {
 	public function getIconPath() {
 		return RELATIVE_WCF_DIR.'images/pokemon/ribbons/'.$this->ribbonID.'.png';
 	}
+	
+	public static function getAllRibbons() {
+		// todo: cache?
+		$ribbons = array();
+		
+		$sql = "SELECT	language.languageItemValue AS ribbonName,
+				language.languageItem AS ribbonID
+			FROM	wcf".WCF_N."_language_item language
+			WHERE	language.languageItem LIKE 'wcf.cheatDatabase.entry.ribbon.%'";
+		$result = WCF::getDB()->sendQuery($sql);
+		while ($row = WCF::getDB()->fetchArray($result)) {
+			if (preg_match('/\\d+$/', $row['ribbonID'], $matches)) {
+				$row['ribbonID'] = intval($matches[0]);
+				$row['entryID'] = 0;
+				
+				$ribbons[] = new EntryRibbon(null, null, $row);
+			}
+		}
+		
+		DatabaseObject::sort($ribbons, 'ribbonID');
+		
+		return $ribbons;
+	}
 }
