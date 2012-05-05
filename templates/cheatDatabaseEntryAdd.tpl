@@ -15,6 +15,8 @@
 		//]]>
 	</script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ImageResizer.class.js"></script>
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/TabbedPane.class.js"></script>
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ToggleButton.class.js"></script>
 	{if $canUseBBCodes}{include file="wysiwyg"}{/if}
 </head>
 <body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
@@ -85,6 +87,57 @@
 								{/if}
 							</div>
 						</div>
+					</fieldset>
+					
+					<fieldset>
+						<legend>{lang}wcf.cheatDatabase.entry.form.other{/lang}</legend>
+						
+						<div class="formElement{if $errorField == 'ribbons'} formError{/if}">
+							<div class="formFieldLabel">{lang}wcf.cheatDatabase.entry.form.ribbons{/lang}</div>
+							<div class="formField">
+								{* todo: styling and problem with images being child of a toggable button *}
+								<div class="toggleButton">
+									<ul>
+										{foreach from=$ribbons key=key item=ribbon}
+											<li><label title="{$ribbon->ribbonName}"><input type="checkbox" name="ribbonIDs[]" value="{$ribbon->ribbonID}"{if $ribbon->ribbonID|in_array:$ribbonIDs} checked="checked"{/if} /> <img src="{$ribbon->getIconPath()}" alt="" /></label></li>
+										{/foreach}
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<script type="text/javascript">
+							//<![CDATA[
+							onloadEvents.push(function() {
+								toggleButton.init('ribbonIDs[]');
+							});
+							//]]>
+						</script>
+					</fieldset>
+					
+					<fieldset>
+						<legend>{lang}wcf.cheatDatabase.entry.form.description{/lang}</legend>
+						
+						<div id="descriptionSettings">
+						
+						<div class="editorFrame formElement{if $errorField == 'text'} formError{/if}" id="textDiv">
+							<div class="formFieldLabel">
+								<label for="text">{lang}wcf.cheatDatabase.entry.form.description{/lang}</label>
+							</div>
+							<div class="formField">				
+								<textarea name="text" id="text" rows="15" cols="40" tabindex="15">{$text}</textarea>
+								{if $errorField == 'text'}
+									<p class="innerError">
+										{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+										{if $errorType == 'tooLong'}{lang}wcf.message.error.tooLong{/lang}{/if}
+										{if $errorType == 'censoredWordsFound'}{lang}wcf.message.error.censoredWordsFound{/lang}{/if}
+									</p>
+								{/if}
+							</div>
+							
+						</div>
+						
+						{include file='messageFormTabs'}
 					</fieldset>
 					
 					{if $additionalFields|isset}{@$additionalFields}{/if}
