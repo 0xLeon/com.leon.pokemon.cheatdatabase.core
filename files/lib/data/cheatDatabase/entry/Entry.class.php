@@ -57,8 +57,15 @@ class Entry extends DatabaseObject {
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
 		
-		$this->message = new EntryMessage(null, $row);
 		parent::__construct($row);
+	}
+	
+	/**
+	 * @see DatabaseObject::handleData()
+	 */
+	protected function handleData($data) {
+		parent::handleData($data);
+		$this->message = new EntryMessage(null, $data);
 	}
 	
 	public function getUser() {
