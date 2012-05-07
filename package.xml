@@ -18,6 +18,7 @@
 		<requiredpackage>com.woltlab.wcf.form.message.wysiwyg</requiredpackage>
 		<requiredpackage>com.woltlab.wcf.data.message.bbcode</requiredpackage>
 		<requiredpackage>com.woltlab.wcf.data.message.search</requiredpackage>
+		<requiredpackage>com.leon.wcf.togglebuttonlist</requiredpackage>
 		<requiredpackage>com.leon.pokemon.images</requiredpackage>
 	</requiredpackages>
 	<excludedpackages>

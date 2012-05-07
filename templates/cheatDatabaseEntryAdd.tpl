@@ -16,7 +16,7 @@
 	</script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ImageResizer.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/TabbedPane.class.js"></script>
-	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ToggleButton.class.js"></script>
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/ToggleButtonList.class.js"></script>
 	{if $canUseBBCodes}{include file="wysiwyg"}{/if}
 </head>
 <body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
@@ -96,10 +96,10 @@
 							<div class="formFieldLabel">{lang}wcf.cheatDatabase.entry.form.ribbons{/lang}</div>
 							<div class="formField">
 								{* todo: styling and problem with images being child of a toggable button *}
-								<div class="toggleButton">
+								<div id="ribbonIDsToggleButtonList" class="toggleButtonList">
 									<ul>
 										{foreach from=$ribbons key=key item=ribbon}
-											<li><label title="{$ribbon->ribbonName}"><input type="checkbox" name="ribbonIDs[]" value="{$ribbon->ribbonID}"{if $ribbon->ribbonID|in_array:$ribbonIDs} checked="checked"{/if} /> <img src="{$ribbon->getIconPath()}" alt="" /></label></li>
+											<li class="toggleButtonListListElement"><label title="{$ribbon->ribbonName}" class="toggleButtonListLabel"><input type="checkbox" class="toggleButtonListCheckbox" name="ribbonIDs[]" value="{$ribbon->ribbonID}"{if $ribbon->ribbonID|in_array:$ribbonIDs} checked="checked"{/if} /> <img src="{$ribbon->getIconPath()}" alt="" /></label></li>
 										{/foreach}
 									</ul>
 								</div>
@@ -109,7 +109,7 @@
 						<script type="text/javascript">
 							//<![CDATA[
 							onloadEvents.push(function() {
-								toggleButton.init('ribbonIDs[]');
+								new ToggleButtonList('ribbonIDsToggleButtonList');
 							});
 							//]]>
 						</script>
