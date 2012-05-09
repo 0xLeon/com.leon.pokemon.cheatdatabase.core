@@ -95,7 +95,6 @@
 						<div class="formElement{if $errorField == 'ribbons'} formError{/if}">
 							<div class="formFieldLabel">{lang}wcf.cheatDatabase.entry.form.ribbons{/lang}</div>
 							<div class="formField">
-								{* todo: styling and problem with images being child of a toggable button *}
 								<div id="ribbonIDsToggleButtonList" class="toggleButtonList">
 									<ul>
 										{foreach from=$ribbons key=key item=ribbon}

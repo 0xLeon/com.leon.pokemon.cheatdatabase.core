@@ -22,3 +22,10 @@
 .cheatDatabaseEntry .messageInner {
 	padding: 10px 20px !important;
 }
+
+#ribbonIDsToggleButtonList .toggleButtonListLabel {
+	min-width: 42px;
+	min-height: 46px;
+}
+
+/* todo: put image in the middle of the button */
