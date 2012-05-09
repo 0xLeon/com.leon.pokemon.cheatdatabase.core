@@ -43,6 +43,7 @@
 				</div>
 				
 				<div class="entryCredits">
+					{if $entry->level != 0}<p><a href="">{lang}wcf.cheatDatabase.entry.level{/lang}: {$entry->level}</a></p>{/if}
 					{if $entry->trainerName != ''}<p><a href="">{lang}wcf.cheatDatabase.entry.trainerName{/lang}: {$entry->trainerName}</a></p>{/if}
 					{if $entry->trainerID !== ''}<p><a href="">{lang}wcf.cheatDatabase.entry.trainerID{/lang}: {'%05d'|sprintf:$entry->trainerID}</a></p>{/if}
 				</div>
@@ -71,10 +72,24 @@
 					</div>
 				{/if}
 				
+				{if $entry->catchLocation != ''}
+					<div class="formElement">
+						<p class="formFieldLabel">{lang}wcf.cheatDatabase.entry.catchLocation{/lang}</p>
+						<p class="formField">{$entry->catchLocation}</p>
+					</div>
+				{/if}
+				
 				{if $entry->catchDate != 0}
 					<div class="formElement">
 						<p class="formFieldLabel">{lang}wcf.cheatDatabase.entry.catchDate{/lang}</p>
 						<p class="formField">{$entry->catchDate|date}</p>
+					</div>
+				{/if}
+				
+				{if $entry->catchLevel != 0}
+					<div class="formElement">
+						<p class="formFieldLabel">{lang}wcf.cheatDatabase.entry.catchLevel{/lang}</p>
+						<p class="formField">{$entry->catchLevel}</p>
 					</div>
 				{/if}
 			</div>

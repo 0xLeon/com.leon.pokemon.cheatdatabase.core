@@ -47,7 +47,9 @@
 		<item name="wcf.cheatDatabase.entry.trainerName"><![CDATA[Originaltrainer]]></item>
 		<item name="wcf.cheatDatabase.entry.trainerID"><![CDATA[Trainer-ID]]></item>
 		<item name="wcf.cheatDatabase.entry.level"><![CDATA[Level]]></item>
+		<item name="wcf.cheatDatabase.entry.catchLocation"><![CDATA[Fangort]]></item>
 		<item name="wcf.cheatDatabase.entry.catchDate"><![CDATA[Gefangen am]]></item>
+		<item name="wcf.cheatDatabase.entry.catchLevel"><![CDATA[Gefangen mit Level]]></item>
 	</category>
 	<category name="wcf.cheatDatabase.entry.pokemon">
 		<item name="wcf.cheatDatabase.entry.pokemon.1.0"><![CDATA[Bisasam]]></item>
