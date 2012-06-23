@@ -81,7 +81,7 @@ class Entry extends DatabaseObject {
 	}
 	
 	public function getIconPath() {
-		return RELATIVE_WCF_DIR.'images/pokemon/icons/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d.png', $this->pokedexNumber);
+		return RELATIVE_WCF_DIR.'images/pokemon/icons/'.(($this->isShiny == 1) ? 'shiny' : 'normal').'/'.sprintf('%03d', $this->pokedexNumber).(($this->form > 0) ? '.'.sprintf('%d', $this->form) : '').'.png';
 	}
 	
 	public function getBallIconPath() {
